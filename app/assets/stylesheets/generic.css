@@ -1,0 +1,133 @@
+
+h1,h2
+{
+color:black;
+text-align:center;
+font-family:"brush script mt", Times, serif;
+font-size:350%
+
+}
+p
+{
+color:white;
+font-family:"brush script mt", Times, serif;
+font-style:italic;
+text-align:center;
+font-size:25px;
+}
+header {
+  padding-top: 20px;
+}
+
+body{
+background-image:url('../images/picture11.png');
+background-repeat:no-repeat;
+background-position:center; 
+background-color:#9DD1D3;
+}
+
+nav {
+  float: right;
+} 
+
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+nav ul li a:visited {
+  color: #09c;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+.container {
+  width: 710px;
+  text-align:center;
+}
+
+body {
+  background: #9DD1D3;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+nav {
+  float: right;
+}
+
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+nav ul li a:visited {
+  color: black;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: white;
+  background: black;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
