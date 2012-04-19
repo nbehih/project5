@@ -62,12 +62,12 @@ describe Host do
     host_with_duplicate_email.should_not be_valid
   end
    it "should reject duplicate first name" do
-    host.create!(@attr)
+    Host.create!(@attr)
     host_with_duplicate_firstName = Host.new(@attr)
     host_with_duplicate_firstName.should_not be_valid
   end
      it "should reject duplicate last name" do
-    host.create!(@attr)
+    Host.create!(@attr)
     host_with_duplicate_lastName = Host.new(@attr)
     host_with_duplicate_lastName.should_not be_valid
   end
@@ -77,18 +77,7 @@ describe Host do
     host_with_duplicate_email = Host.new(@attr)
     host_with_duplicate_email.should_not be_valid
   end
-      it "should reject first name identical up to case" do
-    upcased_FN = @attr[:first_name].upcase
-    Host.create!(@attr.merge(:first_name => upcased_FN))
-    host_with_duplicate_FN = Host.new(@attr)
-    host_with_duplicate_FN.should_not be_valid
-  end
-       it "should reject last name identical up to case" do
-    upcased_LN = @attr[:last_name].upcase
-    Host.create!(@attr.merge(:last_name => upcased_FN))
-    host_with_duplicate_LN = Host.new(@attr)
-    host_with_duplicate_LN.should_not be_valid
-  end
+      
        it "should reject username identical up to case" do
     upcased_username = @attr[:username].upcase
     Host.create!(@attr.merge(:username => upcased_username))
