@@ -14,8 +14,10 @@ class HostsController < ApplicationController
     def create
     @host = Host.new(params[:host])
     if @host.save
+      flash[:success] = "welcome to the new Page"
       redirect_to @host
     else
+      @title ="Sign up!"
       render 'new'
     end
   end

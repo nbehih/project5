@@ -5,9 +5,9 @@ describe "Hosts" do
   describe "signup" do
 
 
-  describe "success" do
+  describe "failure" do
 
-        it "should not make a new user" do
+        it "should not make a new host" do
           lambda do
           visit signup_path
           fill_in "First name",         :with => ""
@@ -22,9 +22,9 @@ describe "Hosts" do
         end.should_not change(Host, :count)
       end
     end
-     describe "failure" do
+     describe "success" do
 
-      it "should not make a new user" do
+      it "should not make a new host" do
         lambda do
         visit signup_path
         fill_in "first",         :with => "Nawal"
