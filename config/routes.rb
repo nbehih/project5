@@ -1,10 +1,15 @@
 Project5::Application.routes.draw do
+  get "sessions/new"
 
-  get "users/new"
+  resources :hosts
+  resources :sessions, :only => [:new, :create, :destroy]
 
   match '/help',    :to => 'pages#help'
-  match '/signup',  :to => 'users#new'
-root :to => 'pages#home'
+  match '/signup',  :to => 'hosts#new'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+
+  root :to => 'pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
