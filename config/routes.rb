@@ -3,7 +3,7 @@ Project5::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
 
 
-  root :to => "pages#home"
+  root :to => 'pages#home'
   match '/help',    :to => 'pages#help'
   match '/signup',  :to => 'hosts#new'
   match '/signin',  :to => 'sessions#new'

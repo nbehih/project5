@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe HostsController do
 render_views
 
@@ -8,7 +7,7 @@ render_views
     describe "for non-signed-in hostss" do
       it "should deny access" do
         get :index
-        redirect_to signin_path, :notice => "Please sign in to access this page."
+        response.should redirect_to(signin_path)
       end
     end
     
@@ -26,6 +25,7 @@ render_views
                     @hosts << Factory(:host, :first_name => Factory.next(:first_name),
                                              :email => Factory.next(:email))
         end
+      end
       
       it "should be successful" do
         get :index
@@ -34,7 +34,7 @@ render_views
       
       it "should have the right title" do
         get :index
-        response.should have_selector('title', :content => "All users")
+        response.should have_selector('title', :content => "All hosts")
       end
     end
   end
@@ -68,7 +68,7 @@ describe "GET 'show'" do
 
 describe "when signed in as another host" do
       it "should be successful" do
-        test_sign_in(FactoryGirl.create(:host, :email => Factory.next(:email)))
+        test_sign_in(FactoryGirl.create(:host, :email => FactoryGirl.next(:email)))
         get :show, :id => @host
         response.should be_success
       end
@@ -136,5 +136,78 @@ describe "POST 'create'" do
       end
  end
 end
+ describe "GET 'edit'" do
+    
+    before(:each) do
+      @host = FactoryGirl.create(:host)
+      test_sign_in(@host)
+    end
+    
+    it "should be successful" do
+      get :edit, :id => @host
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get :edit, :id => @host
+      response.should have_selector('title', :content => "Edit host")
+    end
+    
+    it "should have a link to change the Gravatar" do
+      get :edit, :id => @host
+      gravatar_url = "http://gravatar.com/emails"
+      response.should have_selector("a", :href => gravatar_url,
+                                         :content => "change")
+    end
+  end
+  describe "PUT 'update'" do
+      
+    before(:each) do
+      @host = FactoryGirl.create(:host)
+      test_sign_in(@host)
+    end
+
+    describe "failure" do
+      
+      before(:each) do
+        @attr = { :name => "", :email => "", :password => "", :username => "",
+                  :password_confirmation => "" }
+      end
+      
+      it "should render the 'edit' page" do
+        put :update, :id => @host, :host => @attr
+        response.should render_template('edit')
+      end
+      
+      it "should have the right title" do
+        put :update, :id => @host, :host => @attr
+        response.should have_selector('title', :content => "Edit host")
+      end
+    end
+
+    describe "success" do
+      
+      before(:each) do
+        @attr = { :name => "New Name", :email => "user@example.org",
+                  :password => "barbaz", :password_confirmation => "barbaz" }
+      end
+      
+      it "should change the host's attributes" do
+        put :update, :id => @host, :host => @attr
+        @host.reload
+        @host.first_name.should == @attr[:first_name]
+        @host.last_name.should == @attr[:last_name]
+        @host.email.should == @attr[:email]
+        @host.encrypted_password.should == assigns(:host).encrypted_password
+      end
+      
+      it "should have a flash message" do
+        put :update, :id => @host, :host => @attr
+        flash[:success].should =~ /updated/
+      end
+    end
+  end
 end
-end
+
+
+
