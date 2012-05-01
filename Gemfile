@@ -11,7 +11,9 @@ gem 'gravatar_image_tag'
 group :development do
   gem 'rspec-rails'
 end
-
+group :production do
+  gem 'pg'
+end
 group :test do
   gem 'rspec-rails'
   gem 'webrat'
